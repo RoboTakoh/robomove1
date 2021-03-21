@@ -20,7 +20,7 @@ basic.forever(function () {
     distance = Kitronik_Move_Motor.measure()
     if (distance >= 25) {
         ChangeLights(Kitronik_Move_Motor.colors(Kitronik_Move_Motor.ZipLedColors.Green), Kitronik_Move_Motor.colors(Kitronik_Move_Motor.ZipLedColors.Green), Kitronik_Move_Motor.colors(Kitronik_Move_Motor.ZipLedColors.Red), Kitronik_Move_Motor.colors(Kitronik_Move_Motor.ZipLedColors.Red))
-        Kitronik_Move_Motor.move(Kitronik_Move_Motor.DriveDirections.Forward, 20)
+        Kitronik_Move_Motor.move(Kitronik_Move_Motor.DriveDirections.Forward, 150)
         distance = Kitronik_Move_Motor.measure()
     } else if (distance < 25) {
         ChangeLights(Kitronik_Move_Motor.colors(Kitronik_Move_Motor.ZipLedColors.Red), Kitronik_Move_Motor.colors(Kitronik_Move_Motor.ZipLedColors.Red), Kitronik_Move_Motor.colors(Kitronik_Move_Motor.ZipLedColors.Green), Kitronik_Move_Motor.colors(Kitronik_Move_Motor.ZipLedColors.Green))
@@ -31,6 +31,7 @@ basic.forever(function () {
         Kitronik_Move_Motor.spin(Kitronik_Move_Motor.SpinDirections.Left, 30)
         basic.pause(500)
         Kitronik_Move_Motor.stop()
+        basic.pause(2000)
         distance = Kitronik_Move_Motor.measure()
     } else {
         ChangeLights(Kitronik_Move_Motor.colors(Kitronik_Move_Motor.ZipLedColors.Red), Kitronik_Move_Motor.colors(Kitronik_Move_Motor.ZipLedColors.Red), Kitronik_Move_Motor.colors(Kitronik_Move_Motor.ZipLedColors.Red), Kitronik_Move_Motor.colors(Kitronik_Move_Motor.ZipLedColors.Red))
