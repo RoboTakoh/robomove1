@@ -19,18 +19,28 @@ basic.forever(function () {
     moveMotorZIP.show()
     distance = Kitronik_Move_Motor.measure()
     basic.showNumber(distance)
-    if (distance > 10) {
-        Kitronik_Move_Motor.beepHorn()
+    if (distance >= 14) {
+        ChangeLights(Kitronik_Move_Motor.colors(Kitronik_Move_Motor.ZipLedColors.Green), Kitronik_Move_Motor.colors(Kitronik_Move_Motor.ZipLedColors.Green), Kitronik_Move_Motor.colors(Kitronik_Move_Motor.ZipLedColors.Red), Kitronik_Move_Motor.colors(Kitronik_Move_Motor.ZipLedColors.Red))
+        Kitronik_Move_Motor.move(Kitronik_Move_Motor.DriveDirections.Forward, 30)
+        basic.pause(2000)
+        Kitronik_Move_Motor.stop()
+    } else if (distance < 10) {
+        ChangeLights(Kitronik_Move_Motor.colors(Kitronik_Move_Motor.ZipLedColors.Red), Kitronik_Move_Motor.colors(Kitronik_Move_Motor.ZipLedColors.Red), Kitronik_Move_Motor.colors(Kitronik_Move_Motor.ZipLedColors.Green), Kitronik_Move_Motor.colors(Kitronik_Move_Motor.ZipLedColors.Green))
+        Kitronik_Move_Motor.stop()
+        basic.pause(500)
+        Kitronik_Move_Motor.move(Kitronik_Move_Motor.DriveDirections.Reverse, 30)
+        basic.pause(500)
+        Kitronik_Move_Motor.spin(Kitronik_Move_Motor.SpinDirections.Left, 30)
+        basic.pause(500)
+        Kitronik_Move_Motor.stop()
+    } else if (distance <= 10 && distance < 14) {
         Kitronik_Move_Motor.move(Kitronik_Move_Motor.DriveDirections.Forward, 30)
         ChangeLights(Kitronik_Move_Motor.colors(Kitronik_Move_Motor.ZipLedColors.Green), Kitronik_Move_Motor.colors(Kitronik_Move_Motor.ZipLedColors.Green), Kitronik_Move_Motor.colors(Kitronik_Move_Motor.ZipLedColors.Red), Kitronik_Move_Motor.colors(Kitronik_Move_Motor.ZipLedColors.Red))
-    } else if (distance < 10) {
-        Kitronik_Move_Motor.beepHorn()
-        Kitronik_Move_Motor.move(Kitronik_Move_Motor.DriveDirections.Reverse, 30)
-        ChangeLights(Kitronik_Move_Motor.colors(Kitronik_Move_Motor.ZipLedColors.Red), Kitronik_Move_Motor.colors(Kitronik_Move_Motor.ZipLedColors.Red), Kitronik_Move_Motor.colors(Kitronik_Move_Motor.ZipLedColors.Green), Kitronik_Move_Motor.colors(Kitronik_Move_Motor.ZipLedColors.Green))
-        basic.pause(1)
+        basic.pause(500)
+        Kitronik_Move_Motor.stop()
     } else {
-        Kitronik_Move_Motor.beepHorn()
         ChangeLights(Kitronik_Move_Motor.colors(Kitronik_Move_Motor.ZipLedColors.Red), Kitronik_Move_Motor.colors(Kitronik_Move_Motor.ZipLedColors.Red), Kitronik_Move_Motor.colors(Kitronik_Move_Motor.ZipLedColors.Red), Kitronik_Move_Motor.colors(Kitronik_Move_Motor.ZipLedColors.Red))
-        ChangeLights(0, 0, 0, 0)
+        Kitronik_Move_Motor.stop()
     }
+    basic.pause(1)
 })
